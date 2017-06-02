@@ -16,6 +16,10 @@ func request(client *Client, method, url string, body []byte) ([]byte, error) {
 	req, err := http.NewRequest(method, url, bytes.NewBuffer(body))
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "token "+client.Secret)
+
+	glog.Infoln("HYPERTRACK REQUEST", req)
+	glog.Infoln("HYPERTRACK REQUEST METHOD", req.Method)
+
 	resp, err := client.HttpClient.Do(req)
 	if err != nil {
 		return nil, err
