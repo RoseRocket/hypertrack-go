@@ -1,11 +1,11 @@
 package hypertrack
 
 type GeoJSON struct {
-	Type        GeoJSONType  `json:"type"`
-	Coordinates []Coordinate `json:"coordinates"`
+	Type        GeoJSONType `json:"type"`
+	Coordinates Coordinate  `json:"coordinates"`
 }
 
-type GeoJSONType float64
+type GeoJSONType string
 
 const (
 	GeoJSONTypePoint = AvailabilityStatus("Point")
