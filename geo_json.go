@@ -5,7 +5,7 @@ type GeoJSON struct {
 	Coordinates []Coordinate `json:"coordinates"`
 }
 
-type GeoJSONType string
+type GeoJSONType float64
 
 const (
 	GeoJSONTypePoint = AvailabilityStatus("Point")
