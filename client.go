@@ -44,7 +44,7 @@ func (c *Client) request(method, url string, body []byte) ([]byte, error) {
 Create User
 */
 func (c *Client) CreateUser(name, phone, photo, lookupId, groupId string) (*User, error) {
-	url := fmt.Sprintf("%s://%s/api/%s/users", PROTOCOL, HOST, VERSION)
+	url := fmt.Sprintf("%s://%s/api/%s/users/", PROTOCOL, HOST, VERSION)
 
 	request := make(map[string]interface{})
 	if name != "" {
@@ -86,7 +86,7 @@ func (c *Client) CreateUser(name, phone, photo, lookupId, groupId string) (*User
 Retrieve user
 */
 func (c *Client) RetrieveUser(userId string) (*User, error) {
-	url := fmt.Sprintf("%s://%s/api/%s/users/%s", PROTOCOL, HOST, VERSION, userId)
+	url := fmt.Sprintf("%s://%s/api/%s/users/%s/", PROTOCOL, HOST, VERSION, userId)
 
 	responsePayload, err := c.request("GET", url, nil)
 	if err != nil {
@@ -106,7 +106,7 @@ func (c *Client) RetrieveUser(userId string) (*User, error) {
 Assign action to a user
 */
 func (c *Client) AssignActionToUser(userId string, actionIds []string) (*User, error) {
-	url := fmt.Sprintf("%s://%s/api/%s/users/%s/assign_actions", PROTOCOL, HOST, VERSION, userId)
+	url := fmt.Sprintf("%s://%s/api/%s/users/%s/assign_actions/", PROTOCOL, HOST, VERSION, userId)
 
 	request := make(map[string]interface{})
 	request["action_ids"] = actionIds
@@ -134,7 +134,7 @@ func (c *Client) AssignActionToUser(userId string, actionIds []string) (*User, e
 Create action
 */
 func (c *Client) CreateActionUsingAddress(address, city, zipCode, country, lookupId string, actionType ActionType, scheduledAt *time.Time) (*Action, error) {
-	url := fmt.Sprintf("%s://%s/api/%s/actions", PROTOCOL, HOST, VERSION)
+	url := fmt.Sprintf("%s://%s/api/%s/actions/", PROTOCOL, HOST, VERSION)
 
 	expectedPlace := make(map[string]string)
 	expectedPlace["address"] = address
@@ -174,7 +174,7 @@ func (c *Client) CreateActionUsingAddress(address, city, zipCode, country, looku
 Complete action
 */
 func (c *Client) CompleteAction(actionId string) (*Action, error) {
-	url := fmt.Sprintf("%s://%s/api/%s/actions/%s/completed", PROTOCOL, HOST, VERSION, actionId)
+	url := fmt.Sprintf("%s://%s/api/%s/actions/%s/completed/", PROTOCOL, HOST, VERSION, actionId)
 
 	request := make(map[string]interface{})
 	// request["completion_time"] = time.Now()
@@ -203,7 +203,7 @@ func (c *Client) CompleteAction(actionId string) (*Action, error) {
 Cancel action
 */
 func (c *Client) CancelAction(actionId string) (*Action, error) {
-	url := fmt.Sprintf("%s://%s/api/%s/actions/%s/cancel", PROTOCOL, HOST, VERSION, actionId)
+	url := fmt.Sprintf("%s://%s/api/%s/actions/%s/cancel/", PROTOCOL, HOST, VERSION, actionId)
 
 	request := make(map[string]interface{})
 
@@ -230,7 +230,7 @@ func (c *Client) CancelAction(actionId string) (*Action, error) {
 Retrieve action
 */
 func (c *Client) RetrieveAction(actionId string) (*Action, error) {
-	url := fmt.Sprintf("%s://%s/api/%s/actions/%s", PROTOCOL, HOST, VERSION, actionId)
+	url := fmt.Sprintf("%s://%s/api/%s/actions/%s/", PROTOCOL, HOST, VERSION, actionId)
 
 	responsePayload, err := c.request("GET", url, nil)
 	if err != nil {
