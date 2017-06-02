@@ -28,7 +28,7 @@ func request(client *Client, method, url string, body []byte) ([]byte, error) {
 func processResponse(response *http.Response) ([]byte, error) {
 	responseBody, err := ioutil.ReadAll(response.Body)
 
-	glog.Infoln("HYPERTRACK RESPONSE BODY: ", responseBody)
+	glog.Infoln("HYPERTRACK RESPONSE BODY: ", string(responseBody))
 
 	if err != nil {
 		return nil, err
