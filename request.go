@@ -13,7 +13,7 @@ import (
 func request(client *Client, method, url string, body []byte) ([]byte, error) {
 	req, err := http.NewRequest(method, url, bytes.NewBuffer(body))
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "token"+client.Secret)
+	req.Header.Set("Authorization", "token "+client.Secret)
 	resp, err := client.HttpClient.Do(req)
 	if err != nil {
 		return nil, err
