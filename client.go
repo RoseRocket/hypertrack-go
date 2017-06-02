@@ -138,9 +138,9 @@ func (c *Client) CreateActionUsingAddress(address, city, zipCode, country, looku
 
 	expectedPlace := make(map[string]string)
 	expectedPlace["address"] = address
-	expectedPlace["city"] = address
-	expectedPlace["zip_code"] = address
-	expectedPlace["country"] = address
+	expectedPlace["city"] = city
+	expectedPlace["zip_code"] = zipCode
+	expectedPlace["country"] = country
 
 	request := make(map[string]interface{})
 	request["expected_place"] = expectedPlace
