@@ -174,7 +174,7 @@ func (c *Client) CreateActionUsingAddress(address, city, zipCode, country, looku
 Complete action
 */
 func (c *Client) CompleteAction(actionId string) (*Action, error) {
-	url := fmt.Sprintf("%s://%s/api/%s/actions/%s/completed/", PROTOCOL, HOST, VERSION, actionId)
+	url := fmt.Sprintf("%s://%s/api/%s/actions/%s/complete/", PROTOCOL, HOST, VERSION, actionId)
 
 	request := make(map[string]interface{})
 	// request["completion_time"] = time.Now()
