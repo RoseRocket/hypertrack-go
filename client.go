@@ -10,7 +10,9 @@ import (
 const PROTOCOL = "https"
 const HOST = "api.hypertrack.com"
 const VERSION = "v1"
-const TIMEOUT = 5
+const TIMEOUT = 10
+const IDLECONNECTIONTIMEOUT = 60
+const MAXIDLECONNECTIONS = 100
 
 /*
 Client to the HTTP API of Hypertrack.
@@ -26,10 +28,20 @@ There easiest way to configure the library is by creating a new `Hypertrack` ins
 	htClient := hypertrack.NewClient("pk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "sk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 */
 func NewClient(key, secret string) *Client {
+	tr := &http.Transport{
+		MaxIdleConns:        MAXIDLECONNECTIONS,
+		MaxIdleConnsPerHost: MAXIDLECONNECTIONS,
+		IdleConnTimeout:     time.Second * IDLECONNECTIONTIMEOUT,
+	}
+	client := &http.Client{
+		Transport: tr,
+		Timeout:   time.Second * TIMEOUT,
+	}
+
 	return &Client{
 		Key:        key,
 		Secret:     secret,
-		HttpClient: &http.Client{Timeout: time.Second * TIMEOUT},
+		HttpClient: client,
 	}
 }
 
